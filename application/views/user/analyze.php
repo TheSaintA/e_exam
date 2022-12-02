@@ -37,26 +37,31 @@
 		</div>	
 		<div class="row">
 			<div class="col-lg-12">
-				<div class="table-responsive">
+
+				<div class="table-responsive my-4 w3-card p-2">
+				<?php foreach ($papers as $paper): ?>
+				<?php if($paper->id == $paper_id): ?>
+				<p class="fw-bold float-start">Paper : <label class="text-success"><?= $paper->page_name ?></label></p>
+				<p class="fw-bold float-end">Total Students Appeared : <label class="text-success"><?= $responses; ?></label></p>
+				<?php endif; ?>
+				<?php endforeach; ?>
 				<table class="table table-striped table-inverse">
 					<thead class="thead-inverse">
 						<tr>
 							<th>Id</th>
 							<th>Name</th>
-							<th>Subject</th>
+							<th>Result</th>
 							<th>Action</th>
 						</tr>
 						</thead>
 						<tbody>
 							<?php if($students): $c=1; foreach($students as $student): ?>
-							
 								<tr>
 								<td><?= $c++; ?></td>
 								<td><?= $student->name ?></td>
-								
-								<td>Science</td>
+								<td><span class="fa fa-check-circle text-success"></span> Pass</td>
 								<td>
-									<a href="javascript:void(0)" class="btn text-decoration-none btn-success">Download</a>
+									<a href="javascript:void(0)" class="btn text-decoration-none btn-success">Score</a>
 								</td>
 							</tr>
 							<?php endforeach; else: endif;?>
