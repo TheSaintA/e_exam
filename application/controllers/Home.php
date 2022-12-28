@@ -27,10 +27,6 @@ class Home extends CI_Controller
 		$this->load->view($page, compact('papers', 'admin_exists', 'users'));
 		$this->load->view("footer");
 	}
-	public function new_template($page)
-	{
-		$this->load->view("new_template/$page");
-	}
 	public function student_login($id)
 	{
 		$data = $this->dtb->getDataById($id, 'page_tb');
@@ -98,8 +94,8 @@ class Home extends CI_Controller
 	public function admin_logout()
 	{
 
-		$this->session->unset_userdata('username');
-		return redirect(base_url("admin_login"), 'refresh');
+		$this->session->unset_userdata('admin');
+		return redirect(base_url("p/login"), 'refresh');
 	}
 	public function create_admin()
 	{
@@ -109,7 +105,7 @@ class Home extends CI_Controller
 		} else {
 			$this->session->set_flashdata('success', 'Failed to create admin account');
 		}
-		return redirect(base_url('admin_login'), 'refresh');
+		return redirect(base_url('p/login'), 'refresh');
 	}
 	public function validate_admin()
 	{
